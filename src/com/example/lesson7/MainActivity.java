@@ -1,6 +1,7 @@
 package com.example.lesson7;
 
-import com.example.lesson7.StudentsContract.StudentEntry;
+import database.DbHelper;
+import database.StudentsContract.StudentEntry;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -29,34 +30,12 @@ public class MainActivity extends Activity implements LoaderManager.LoaderCallba
 		if(savedInstanceState == null)
 		{
 			ListView listView = (ListView)findViewById(R.id.listView);
-			FillDatabase();
-			
 			 mAdapter = new SimpleCursorAdapter(this,
 	                    android.R.layout.simple_list_item_1, null,
 	                    new String[] { StudentEntry.COLUMN_NAME_STUDENT_NAME },
 	                    new int[] { android.R.id.text1 }, 0);
 			 listView.setAdapter(mAdapter);
 		}
-	}
-	
-	private void FillDatabase(){
-		DbHelper dbHelper = new DbHelper(this);
-		
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-		// Create a new map of values, where column names are the keys
-		ContentValues values = new ContentValues();
-		values.put(StudentEntry.COLUMN_NAME_STUDENT_NAME, "Валерий");
-		values.put(StudentEntry.COLUMN_NAME_STUDENT_SURNAME, "Ожиганов");
-		values.put(StudentEntry.COLUMN_NAME_GROUP, 1);
-		values.put(StudentEntry.COLUMN_NAME_COURSE, 1);
-
-		// Insert the new row, returning the primary key value of the new row
-		long newRowId;
-		newRowId = db.insert(
-				StudentEntry.TABLE_NAME,
-				null,
-		        values);
 	}
 
 	@Override
