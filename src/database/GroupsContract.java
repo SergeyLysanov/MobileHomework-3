@@ -1,5 +1,6 @@
 package database;
 
+import android.net.Uri;
 import android.provider.BaseColumns;
 
 public final class GroupsContract {
@@ -9,7 +10,9 @@ public final class GroupsContract {
 
     /* Inner class that defines the table contents */
     public static abstract class GroupEntry implements BaseColumns {
-        public static final String TABLE_NAME = "group";
+    	public static final Uri CONTENT_URI =  Uri.parse("content://" + SimpleProvider.AUTHORITY + "/studentGroup");
+    	
+        public static final String TABLE_NAME = "studentGroup";
         public static final String COLUMN_NAME_GROUP_NAME = "name";
         public static final String COLUMN_NAME_SEMESTER = "semester";
     }

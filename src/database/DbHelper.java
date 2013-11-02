@@ -25,8 +25,7 @@ public class DbHelper extends SQLiteOpenHelper
 		    StudentEntry._ID + PRIMARY_TYPE + COMMA_SEP + 
 		    StudentEntry.COLUMN_NAME_STUDENT_NAME + TEXT_TYPE + COMMA_SEP +
 		    StudentEntry.COLUMN_NAME_STUDENT_SURNAME + TEXT_TYPE + COMMA_SEP +  
-		    StudentEntry.COLUMN_NAME_GROUP + INTEGER_TYPE + COMMA_SEP +  
-		    StudentEntry.COLUMN_NAME_COURSE + INTEGER_TYPE + " )";
+		    StudentEntry.COLUMN_NAME_GROUP + INTEGER_TYPE + " )";
 	
 	private static final String SQL_CREATE_GROUPS =
 		    "CREATE TABLE " + GroupEntry.TABLE_NAME + " (" +
@@ -34,10 +33,12 @@ public class DbHelper extends SQLiteOpenHelper
 		    GroupEntry.COLUMN_NAME_GROUP_NAME + TEXT_TYPE + COMMA_SEP +
 		    GroupEntry.COLUMN_NAME_SEMESTER + INTEGER_TYPE + " )";
 
-	private static final String SQL_DELETE_ENTRIES =
-	    "DROP TABLE IF EXISTS " + StudentEntry.TABLE_NAME + COMMA_SEP + GroupEntry.TABLE_NAME;
+	private static final String SQL_DELETE_STUDENTS =
+	    "DROP TABLE IF EXISTS " + StudentEntry.TABLE_NAME;
+	private static final String SQL_DELETE_GROUPS =
+		"DROP TABLE IF EXISTS " + GroupEntry.TABLE_NAME;
 	
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "Students.db";
 
 	public DbHelper(Context context) {
@@ -45,8 +46,8 @@ public class DbHelper extends SQLiteOpenHelper
 	}
 	
 	private void fillStudents(SQLiteDatabase db){
-		List<String> studentsName = Arrays.asList("Антон", "Вася", "Гоша", "Петя" , "Катя", "Люся", "Дмитрий", "Дмитрий");
-		List<String> studentsSurname = Arrays.asList("Антонов", "Васильев", "Петров", "Сидоров" , "Кабанова", "Максимова", "Гришин", "Волошин");
+		List<String> studentsName = Arrays.asList("Антон", "Вася", "Гоша", "Петя" , "Катя", "Люся", "Дмитрий", "Дмитрий", "Павлик", "Ваня", "Карл", "Марк");
+		List<String> studentsSurname = Arrays.asList("Антонов", "Васильев", "Петров", "Сидоров" , "Кабанова", "Максимова", "Гришин", "Волошин", "Морозов", "Ванин", "Маркс", "Марков");
 		
 		for(int i = 0; i < studentsName.size(); ++i){
 			ContentValues values = new ContentValues();
@@ -86,7 +87,8 @@ public class DbHelper extends SQLiteOpenHelper
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		db.execSQL(SQL_DELETE_ENTRIES);
+		db.execSQL(SQL_DELETE_STUDENTS);
+		db.execSQL(SQL_DELETE_GROUPS);
         onCreate(db);
 	}
 	
