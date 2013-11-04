@@ -1,7 +1,7 @@
 package com.example.lesson7;
 
-import database.Student;
-import database.StudentsContract.StudentEntry;
+import database.Group;
+import database.GroupsContract.GroupEntry;
 import android.annotation.TargetApi;
 import android.content.CursorLoader;
 import android.content.Loader;
@@ -15,24 +15,24 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class StudentsFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor>
+public class GroupsFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor>
 {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), 
-				R.layout.students_layout, null,
-                new String[] { StudentEntry.COLUMN_NAME_STUDENT_NAME, StudentEntry.COLUMN_NAME_STUDENT_SURNAME, StudentEntry.COLUMN_NAME_GROUP },
-                new int[] { R.id.name, R.id.surname, R.id.group }, 0);
+				R.layout.groups_layout, null,
+                new String[] { GroupEntry._ID, GroupEntry.COLUMN_NAME_GROUP_NAME, GroupEntry.COLUMN_NAME_SEMESTER },
+                new int[] { R.id.idGroup, R.id.nameGroup, R.id.semester }, 0);
 		setListAdapter(adapter);
-		getActivity().getLoaderManager().initLoader(0, null, this);
+		getActivity().getLoaderManager().initLoader(1, null, this);
 	}
 	
 	@Override
 	public Loader<Cursor> onCreateLoader(int loaderId, Bundle bundle) {
 		return new CursorLoader(this.getActivity(), 
-				StudentEntry.CONTENT_URI,
-				new String[] {StudentEntry._ID, StudentEntry.COLUMN_NAME_STUDENT_NAME, StudentEntry.COLUMN_NAME_STUDENT_SURNAME, StudentEntry.COLUMN_NAME_GROUP}, 
+				GroupEntry.CONTENT_URI,
+				new String[] {GroupEntry._ID, GroupEntry.COLUMN_NAME_GROUP_NAME, GroupEntry.COLUMN_NAME_SEMESTER}, 
                 null, null, null);
 	}
 
@@ -57,15 +57,14 @@ public class StudentsFragment extends ListFragment implements LoaderManager.Load
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 		
-		Student student = new Student();
+		Group group = new Group();
         Cursor cursor = (Cursor)getListAdapter().getItem(position);
         
-        student.id = cursor.getInt(cursor.getColumnIndex(StudentEntry._ID));
-        student.name = cursor.getString(cursor.getColumnIndex(StudentEntry.COLUMN_NAME_STUDENT_NAME));
-        student.surname = cursor.getString(cursor.getColumnIndex(StudentEntry.COLUMN_NAME_STUDENT_SURNAME));
-        student.groupId = cursor.getInt(cursor.getColumnIndex(StudentEntry.COLUMN_NAME_GROUP));
+        group.id = cursor.getInt(cursor.getColumnIndex(GroupEntry._ID));
+        group.name = cursor.getString(cursor.getColumnIndex(GroupEntry.COLUMN_NAME_GROUP_NAME));
+        group.semester = cursor.getInt(cursor.getColumnIndex(GroupEntry.COLUMN_NAME_SEMESTER));
 
-        StudentDialog dialog  = new StudentDialog(student);
-        dialog.show(getFragmentManager(), "StudentDialog");
+        GroupDialog dialog  = new GroupDialog(group);
+        dialog.show(getFragmentManager(), "GroupDialog");
 	}
 }

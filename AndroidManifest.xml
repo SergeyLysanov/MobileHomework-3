@@ -32,6 +32,9 @@
             android:exported="false" >
         </provider>
         
+        <service android:name="services.StudentUpdateService" />
+        <service android:name="services.GroupUpdateService" />
+        
     </application>
 
 </manifest>

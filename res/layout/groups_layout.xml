@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    
+	<TextView android:id="@+id/nameGroup"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="5dp"
+    	android:textAppearance="?android:attr/textAppearanceListItem"
+    	android:text="test"
+	/>
+		
+	<TextView android:id="@+id/idGroup"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/nameGroup"
+    	android:layout_alignStart="@id/nameGroup"
+    	android:textAppearance="?android:attr/textAppearanceSmall"
+    	android:text="id"
+	/>
+	
+	<TextView  android:id="@+id/semesterPlaceholder"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_centerVertical="true"
+	    android:layout_centerHorizontal="true"
+	    android:textAppearance="?android:attr/textAppearanceSmall" 
+	    android:text="Семестер: "
+	/>
+	
+	<TextView android:id="@+id/semester"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+    	android:textAppearance="?android:attr/textAppearanceListItem"
+    	android:layout_centerVertical="true"
+    	android:layout_marginLeft="1dp"
+    	android:layout_toRightOf="@id/semesterPlaceholder"
+	/>
+	
+
+</RelativeLayout>
