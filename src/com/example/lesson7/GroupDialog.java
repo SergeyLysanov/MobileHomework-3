@@ -2,20 +2,17 @@ package com.example.lesson7;
 
 import database.Group;
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.support.v4.app.DialogFragment;
 import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
 @SuppressLint("ValidFragment")
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class GroupDialog extends DialogFragment
 {
     public interface EditGroupDialogListener {

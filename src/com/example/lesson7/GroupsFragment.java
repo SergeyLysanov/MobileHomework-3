@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class GroupsFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor>
 {
 	@Override

@@ -2,11 +2,9 @@ package com.example.lesson7;
 
 import database.Student;
 import database.StudentsContract.StudentEntry;
-import android.annotation.TargetApi;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.app.LoaderManager;
@@ -14,7 +12,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class StudentsFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor>
 {
 	@Override

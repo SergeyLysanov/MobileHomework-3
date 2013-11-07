@@ -1,7 +1,6 @@
 package database;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import database.GroupsContract.GroupEntry;
@@ -10,7 +9,6 @@ import database.StudentsContract.StudentEntry;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper extends SQLiteOpenHelper
