@@ -54,14 +54,16 @@ public class StudentsFragment extends ListFragment implements LoaderManager.Load
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 		
-		Student student = new Student();
+		
         Cursor cursor = (Cursor)getListAdapter().getItem(position);
         
-        student.id = cursor.getInt(cursor.getColumnIndex(StudentEntry._ID));
-        student.name = cursor.getString(cursor.getColumnIndex(StudentEntry.COLUMN_NAME_STUDENT_NAME));
-        student.surname = cursor.getString(cursor.getColumnIndex(StudentEntry.COLUMN_NAME_STUDENT_SURNAME));
-        student.groupId = cursor.getInt(cursor.getColumnIndex(StudentEntry.COLUMN_NAME_GROUP));
-
+        Integer studentId = cursor.getInt(cursor.getColumnIndex(StudentEntry._ID));
+        String name = cursor.getString(cursor.getColumnIndex(StudentEntry.COLUMN_NAME_STUDENT_NAME));
+        String surname = cursor.getString(cursor.getColumnIndex(StudentEntry.COLUMN_NAME_STUDENT_SURNAME));
+        Integer groupId = cursor.getInt(cursor.getColumnIndex(StudentEntry.COLUMN_NAME_GROUP));
+        
+        Student student = new Student(studentId, name, surname, groupId);
+        
         StudentDialog dialog  = new StudentDialog(student);
         dialog.show(getFragmentManager(), "StudentDialog");
 	}

@@ -2,11 +2,9 @@ package com.example.lesson7;
 
 import database.Group;
 import database.GroupsContract.GroupEntry;
-import android.annotation.TargetApi;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.app.LoaderManager;
@@ -56,13 +54,15 @@ public class GroupsFragment extends ListFragment implements LoaderManager.Loader
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 		
-		Group group = new Group();
+		
         Cursor cursor = (Cursor)getListAdapter().getItem(position);
         
-        group.id = cursor.getInt(cursor.getColumnIndex(GroupEntry._ID));
-        group.name = cursor.getString(cursor.getColumnIndex(GroupEntry.COLUMN_NAME_GROUP_NAME));
-        group.semester = cursor.getInt(cursor.getColumnIndex(GroupEntry.COLUMN_NAME_SEMESTER));
+        Integer groupId = cursor.getInt(cursor.getColumnIndex(GroupEntry._ID));
+        String name = cursor.getString(cursor.getColumnIndex(GroupEntry.COLUMN_NAME_GROUP_NAME));
+        Integer semester = cursor.getInt(cursor.getColumnIndex(GroupEntry.COLUMN_NAME_SEMESTER));
 
+        Group group = new Group(groupId, name, semester);
+        
         GroupDialog dialog  = new GroupDialog(group);
         dialog.show(getFragmentManager(), "GroupDialog");
 	}

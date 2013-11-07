@@ -7,7 +7,6 @@ import database.Group;
 import database.GroupsContract.GroupEntry;
 import database.Student;
 import database.StudentsContract.StudentEntry;
-
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -87,10 +86,10 @@ public class MainActivity extends FragmentActivity
 	@Override
 	public void onDialogPositiveClick(Student student) {
 		 Intent intent = new Intent(MainActivity.this, StudentUpdateService.class);
-         intent.putExtra(StudentEntry._ID, student.id);
-         intent.putExtra(StudentEntry.COLUMN_NAME_STUDENT_NAME, student.name);
-         intent.putExtra(StudentEntry.COLUMN_NAME_STUDENT_SURNAME, student.surname); 
-         intent.putExtra(StudentEntry.COLUMN_NAME_GROUP, student.groupId);
+         intent.putExtra(StudentEntry._ID, student.getId());
+         intent.putExtra(StudentEntry.COLUMN_NAME_STUDENT_NAME, student.getName());
+         intent.putExtra(StudentEntry.COLUMN_NAME_STUDENT_SURNAME, student.getSurname()); 
+         intent.putExtra(StudentEntry.COLUMN_NAME_GROUP, student.getGroupId());
          
          startService(intent);
 	}

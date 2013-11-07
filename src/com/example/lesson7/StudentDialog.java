@@ -54,9 +54,9 @@ public class StudentDialog extends DialogFragment
         mSurnameEditText   = (EditText)view.findViewById(R.id.studentSurname);
         mGroupEditText   = (EditText)view.findViewById(R.id.studentGroup);
         
-        mNameEditText.setText(mStudent.name);
-        mSurnameEditText.setText(mStudent.surname);
-        mGroupEditText.setText(mStudent.groupId.toString());
+        mNameEditText.setText(mStudent.getName());
+        mSurnameEditText.setText(mStudent.getSurname());
+        mGroupEditText.setText(mStudent.getGroupId().toString());
         
         builder.setMessage("Dialog")
                .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
@@ -72,8 +72,8 @@ public class StudentDialog extends DialogFragment
     
     private void updateStudent()
     {
-    	mStudent.name = mNameEditText.getText().toString();
-    	mStudent.surname = mSurnameEditText.getText().toString();
-    	mStudent.groupId = Integer.parseInt(mGroupEditText.getText().toString());
+    	mStudent.setName(mNameEditText.getText().toString());
+    	mStudent.setSurname(mSurnameEditText.getText().toString());
+    	mStudent.setGroupId(Integer.parseInt(mGroupEditText.getText().toString()));
     }
 }
