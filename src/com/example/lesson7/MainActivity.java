@@ -14,6 +14,8 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.View;
 
 public class MainActivity extends FragmentActivity 
 							implements StudentDialog.EditStudentDialogListener,
@@ -103,4 +105,15 @@ public class MainActivity extends FragmentActivity
          
          startService(intent);
 	}
+	
+	public void clickHeader(View v)
+	{
+        Student student = new Student(studentId, name, surname, groupId);
+        
+        StudentDialog dialog  = new StudentDialog(student);
+        dialog.show(getFragmentManager(), "StudentDialog");
+        
+		Log.d("CLICK", "CLICK");
+	}
+
 }
