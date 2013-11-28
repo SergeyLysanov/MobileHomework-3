@@ -87,7 +87,7 @@ public class StudentsFragment extends ListFragment implements LoaderManager.Load
         
         Student student = new Student(studentId, name, surname, groupId);
         
-        StudentDialog dialog  = new StudentDialog(student);
+        StudentDialog dialog  = new StudentEditDialog(student);
         dialog.show(getFragmentManager(), "StudentDialog");
 	}
 }

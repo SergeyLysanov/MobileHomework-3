@@ -13,33 +13,19 @@ import android.view.View;
 import android.widget.EditText;
 
 @SuppressLint("ValidFragment")
-public class StudentDialog extends DialogFragment
-{
-    public interface EditStudentDialogListener {
-        public void onDialogPositiveClick(Student student);
-    }
-    
+public abstract class StudentDialog extends DialogFragment
+{   
     private EditText                   		mNameEditText;
     private EditText                   		mSurnameEditText;
     private EditText                   		mGroupEditText;
     
-    private EditStudentDialogListener       mListener;
-    private final Student 					mStudent;
+    protected Student 						mStudent;
     
 	public StudentDialog(Student student) {
 		this.mStudent = student;
 	}
-    
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (EditStudentDialogListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement EditStudentDialogListener");
-        }
-    }
+	
+	protected void clickPositive(){}
         
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -62,7 +48,8 @@ public class StudentDialog extends DialogFragment
                .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                    public void onClick(DialogInterface dialog, int id) {
                 	   updateStudent();		
-                	   mListener.onDialogPositiveClick(mStudent);
+                	   clickPositive();
+                	   //mListener.onDialogPositiveClick(mStudent);
                    }
                })
                .setNegativeButton("Cancel", null);

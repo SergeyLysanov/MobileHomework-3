@@ -92,7 +92,25 @@ public class SimpleProvider extends ContentProvider {
      */
     @Override
     public Uri insert(Uri uri, ContentValues initialValues) {
-    	return null;
+        SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+        int count;
+
+        switch (mUriMatcher.match(uri)) {
+            case GROUP:
+            	db.insert(GroupEntry.TABLE_NAME, null, initialValues);
+                break;
+
+            case STUDENTS:
+                db.insert(StudentEntry.TABLE_NAME, null, initialValues);
+                break;
+
+            default:
+                throw new IllegalArgumentException("Unknown URI " + uri);
+        }
+
+        getContext().getContentResolver().notifyChange(uri, null);
+
+        return uri;
     }
 
     /**

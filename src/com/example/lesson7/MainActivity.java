@@ -1,5 +1,6 @@
 package com.example.lesson7;
 
+import services.StudentAddService;
 import services.StudentUpdateService;
 import services.GroupUpdateService;
 
@@ -18,7 +19,8 @@ import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends FragmentActivity 
-							implements StudentDialog.EditStudentDialogListener,
+							implements StudentEditDialog.EditStudentDialogListener,
+							StudentAddDialog.AddStudentDialogListener,
 							GroupDialog.EditGroupDialogListener{
 	
 	private int mCurrentTab = 0;
@@ -106,14 +108,23 @@ public class MainActivity extends FragmentActivity
          startService(intent);
 	}
 	
+	@Override
+	public void onAddDialogPositiveClick(Student student) {
+		 Intent intent = new Intent(MainActivity.this, StudentAddService.class);
+         intent.putExtra(StudentEntry._ID, student.getId());
+         intent.putExtra(StudentEntry.COLUMN_NAME_STUDENT_NAME, student.getName());
+         intent.putExtra(StudentEntry.COLUMN_NAME_STUDENT_SURNAME, student.getSurname()); 
+         intent.putExtra(StudentEntry.COLUMN_NAME_GROUP, student.getGroupId());
+         
+         startService(intent);		
+	}
+	
 	public void clickHeader(View v)
 	{
-        Student student = new Student(studentId, name, surname, groupId);
+        Student student = new Student(1, "", "", 1);
+        StudentDialog dialog  = new StudentAddDialog(student);
+        dialog.show(getSupportFragmentManager(), "StudentAddDialog");
         
-        StudentDialog dialog  = new StudentDialog(student);
-        dialog.show(getFragmentManager(), "StudentDialog");
-        
-		Log.d("CLICK", "CLICK");
+		//Log.d("CLICK", "CLICK");
 	}
-
 }

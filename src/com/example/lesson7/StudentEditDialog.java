@@ -1,22 +1,19 @@
 package com.example.lesson7;
 
+import database.Student;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 
-import com.example.lesson7.StudentEditDialog.EditStudentDialogListener;
-
-import database.Student;
-
 @SuppressLint("ValidFragment")
-public class StudentAddDialog extends StudentDialog
+public class StudentEditDialog extends StudentDialog
 {
-    public interface AddStudentDialogListener {
-        public void onAddDialogPositiveClick(Student student);
+    public interface EditStudentDialogListener {
+        public void onDialogPositiveClick(Student student);
     }
     
-    private AddStudentDialogListener       mListener;
+    private EditStudentDialogListener       mListener;
     
-	public StudentAddDialog(Student student) {
+	public StudentEditDialog(Student student) {
 		super(student);
 	}
     
@@ -24,7 +21,7 @@ public class StudentAddDialog extends StudentDialog
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (AddStudentDialogListener) activity;
+            mListener = (EditStudentDialogListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement EditStudentDialogListener");
@@ -33,6 +30,6 @@ public class StudentAddDialog extends StudentDialog
         
     @Override
     protected void clickPositive() {
-    	mListener.onAddDialogPositiveClick(mStudent);
+    	mListener.onDialogPositiveClick(mStudent);
     }
 }

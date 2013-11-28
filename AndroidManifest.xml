@@ -34,6 +34,7 @@
         
         <service android:name="services.StudentUpdateService" />
         <service android:name="services.GroupUpdateService" />
+        <service android:name="services.StudentAddService" />
         
     </application>
 
